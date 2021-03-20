@@ -1,0 +1,83 @@
+﻿@model List<Entity.DBO.SolicitudEntity>
+
+
+<div class="container-fluid">
+    <h1>Solicitudes</h1>
+
+    <div class="row">
+
+        <div class="col-3">
+            <button type="button" class="btn btn-outline-primary" onclick="ClickNew()"><i class='bx bx-add-to-queue'></i></button>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-10">
+            <div>
+                <table id="GridSolicitud" class="table table-dark table-hover">
+                    <thead>
+                        <tr>
+                            <th>Id Solicitud</th>
+                            <th>Id Civil</th>
+                            <th>Id Tipo Tramite</th>
+                            <th>Detalle</th>
+                            <th>Estado</th>
+                            <th>Acción</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.IdSolicitud</td>
+                                <td>@item.padronelec.Cedula</td>
+                                <td>@item.tipotram.Descripcion</td>
+                                <td>@item.detalle</td>
+                                <td>@(item.Estado ? "Activo" : "Inactivo")</td>
+                                <td>
+                                    <button type="button" class="btn btn-outline-primary" onclick="ClickUpdate(@item.IdSolicitud)"><i class='bx bx-edit-alt'></i></button>
+                                    <button type="button" class="btn btn-outline-primary" onclick="ClickDelete(@item.IdSolicitud)"><i class='bx bx-trash'></i></button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+@section scripts{
+
+    @if (ViewData.ContainsKey("msg"))
+    {
+        <script>
+            Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success');
+            var IsLoading = false;
+        </script>
+
+    }
+
+    else
+    {
+        <script>
+          var IsLoading = true;
+        </script>
+
+    }
+
+    <script src="~/Scripts/Solicitud/Index.js"></script>
+
+
+
+
+
+}

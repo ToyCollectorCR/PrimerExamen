@@ -1,0 +1,81 @@
+﻿@model Entity.DBO.PadronElectoralEntity
+
+@{
+
+    var TypeForm = ViewBag.Form as bool?;
+
+
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">@(TypeForm.Value? "Edita Padron Electoral":"Nuevo Padron Electoral")</h4>
+                    <form action="/PadronElectoral/Save" method="post">
+
+                        <input type="hidden" name="IdCivil" value="@Model.IdCivil" />
+
+                        <div class="form-floating mb-3">
+
+                            <div>
+                                <input class="form-control" type="text" name="Cedula" value="@Model.Cedula" />
+                                <label for="Cedula">Cedula</label>
+                            </div>
+                            
+
+                            <div>
+                                <input class="form-control" type="text" name="Nombre" value="@Model.Nombre" />
+                                <label for="Nombre">Nombre</label>
+                            </div>
+                            
+
+                            <div>
+                                <input class="form-control" type="text" name="Apellido1" value="@Model.Apellido1" />
+                                <label for="Apellido1">Apellido1</label>
+                            </div>
+                            
+
+                            <div>
+                                <input class="form-control" type="text" name="Apellido2" value="@Model.Apellido2" />
+                                <label for="Apellido2">Apellido2</label>
+                            </div>
+                                
+
+                            <div>
+                            <input class="form-control" type="text" name="Edad" value="@Model.Edad" />
+                            <label for="Edad">Edad</label>
+                            </div>
+                            
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="true" id="Estado" name="Estado" @(Model.Estado ? "checked" : "")>
+                                <label class="form-check-label" for="Estado">
+                                    Estado
+                                </label>
+                            </div>
+                            
+
+                            <div class="mb-3">
+                                @if (TypeForm.Value)
+                                {
+                                    <button type="submit" class="btn btn-outline-primary"><i class='bx bx-edit-alt'></i></button>
+
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-outline-primary"><i class='bx bx-save'></i></button>
+                                }
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,90 @@
+﻿@model Examen1.Models.SolicitudEdit
+
+@using Newtonsoft.Json;
+
+@{
+
+    var TypeForm = ViewBag.Form as bool?;
+}
+
+<model data-entity="@JsonConvert.SerializeObject(Model.solicitud)" />
+<div id="SolicitudEdit" class="container">
+
+    <div class="row" v-if="true">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">@(TypeForm.Value? "Edita Solicitud":"Nueva Solicitud")</h4>
+                    <form>
+
+                        <input type="hidden" name="IdSolicitud" v-model="model.IdSolicitud" />
+
+                        <div class="form-floating mb-3">
+
+
+                            <div class="form-floating mb-3">
+                                <select class="form-control" id="IdCivil" aria-label="Default select example" v-model="model.IdCivil">
+                                    @foreach (var item in Model.ddlPadronElectoral)
+                                    {
+                                        <option value="@item.IdCivil">@item.Cedula</option>
+
+                                    }
+
+                                </select>
+
+                                <label for="IdCivil">Padron Electoral</label>
+                            </div>
+
+
+                            <div class="form-floating mb-3">
+                                <select class="form-control" id="IdTipoTramite" aria-label="Default select example" v-model="model.IdTipoTramite">
+                                    @foreach (var item in Model.ddlTipoTramite)
+                                    {
+                                        <option value="@item.IdTipoTramite">@item.Descripcion</option>
+
+                                    }
+
+                                </select>
+
+                                <label for="IdTipoTramite">Tipo Tramite</label>
+                            </div>
+                            
+
+                            <div class="form-floating mb-3">
+                                <input class="form-control" type="text" name="Detalle" id="Detalle" v-model="model.Detalle" />
+                                <label for="Detalle"> Detalle</label>
+                            </div>
+
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="Estado" name="Estado" v-model="model.Estado" />
+                                <label class="form-check-label" for="Estado">
+                                    Estado
+                                </label>
+                            </div>
+
+
+                            <div class="mb-3">
+                                @if (TypeForm.Value)
+                                {
+                                    <button type="button" @@Click="Save" class="btn btn-outline-primary"><i class='bx bx-edit-alt'></i></button>
+
+                                }
+                                else
+                                {
+                                    <button type="button" @@Click="Save" class="btn btn-outline-primary"><i class='bx bx-save'></i></button>
+                                }
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+@section scripts{
+    <script src="~/Scripts/Solicitud/Edit.js"></script>
+}

@@ -1,0 +1,55 @@
+﻿@model Entity.DBO.TipoTramiteEntity
+
+@{
+
+    var TypeForm = ViewBag.Form as bool?;
+
+
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">@(TypeForm.Value? "Edita TipoTramite":"Tipo de Tramite")</h4>
+                    <form action="/TipoTramite/Save" method="post">
+
+                        <input type="hidden" name="IdTipoTramite" value="@Model.IdTipoTramite" />
+
+                        <div class="form-floating mb-3">
+
+                            <input class="form-control" type="text" name="Descripcion" value="@Model.Descripcion" />
+                            <label for="Descripcion">Descripcion</label>
+                            <br />
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="true" id="Estado" name="Estado" @(Model.Estado ? "checked" : "")>
+                                <label class="form-check-label" for="Estado">
+                                    Estado
+                                </label>
+                            </div>
+                            <br />
+
+                            <div class="mb-3">
+                                @if (TypeForm.Value)
+                                {
+                                    <button type="submit" class="btn btn-outline-primary"><i class='bx bx-edit-alt'></i></button>
+
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-outline-primary"><i class='bx bx-save'></i></button>
+                                }
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
