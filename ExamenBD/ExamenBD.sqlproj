@@ -78,5 +78,6 @@
     <Build Include="dbo\Table\PadronElectoral.sql" />
     <Build Include="dbo\Table\Solicitud.sql" />
     <Build Include="dbo\Table\Tramite.sql" />
+    <Build Include="dbo\Table\test.sql" />
   </ItemGroup>
 </Project>
